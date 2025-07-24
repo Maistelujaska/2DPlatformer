@@ -7,9 +7,10 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
     bool isFacingRight = true;
+    public Animator animator;
     [Header("Movement")]
     public float moveSpeed = 5f;
-    float horizontalMovement;
+    float horizontalMovement = 0f;
 
     [Header("Jumping")]
     public float jumpPower = 10f;
@@ -59,6 +60,12 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
             Flip();
         }
+        //set animator variables
+        animator.SetFloat("yVelocity", rb.linearVelocity.y);
+        animator.SetFloat("magnitude", Mathf.Abs(horizontalMovement));
+        animator.SetBool("isWallSliding", isWallSliding);
+
+
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -75,12 +82,14 @@ public class PlayerMovement : MonoBehaviour
                 //Hold down jump button = full height
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
                 jumpsRemaining--;
+                animator.SetTrigger("jump");
             }
             else if (context.canceled && rb.linearVelocity.y > 0)
             {
                 //Light tap of jump button = half the height 
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
                 jumpsRemaining--;
+                animator.SetTrigger("jump");
             }
         }
 
@@ -90,9 +99,10 @@ public class PlayerMovement : MonoBehaviour
             isWallJumping = true;
             rb.linearVelocity = new Vector2(wallJumpDirection * wallJumpPower.x, wallJumpPower.y);
             wallJumpTimer = 0;
+            animator.SetTrigger("jump");
 
             //force flip
-            if(transform.localScale.x != wallJumpDirection)
+            if (transform.localScale.x != wallJumpDirection)
             {
                 isFacingRight = !isFacingRight;
                 Vector3 ls = transform.localScale;
