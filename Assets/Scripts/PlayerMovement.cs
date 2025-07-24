@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     bool isFacingRight = true;
     public Animator animator;
+    public ParticleSystem smokeFX;
+
     [Header("Movement")]
     public float moveSpeed = 5f;
     float horizontalMovement = 0f;
@@ -74,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void Jump(InputAction.CallbackContext context)
+
     {
         if(jumpsRemaining > 0)
         {
@@ -82,14 +85,14 @@ public class PlayerMovement : MonoBehaviour
                 //Hold down jump button = full height
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
                 jumpsRemaining--;
-                animator.SetTrigger("jump");
+                JumpFX();
             }
             else if (context.canceled && rb.linearVelocity.y > 0)
             {
                 //Light tap of jump button = half the height 
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
                 jumpsRemaining--;
-                animator.SetTrigger("jump");
+                JumpFX();
             }
         }
 
@@ -99,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
             isWallJumping = true;
             rb.linearVelocity = new Vector2(wallJumpDirection * wallJumpPower.x, wallJumpPower.y);
             wallJumpTimer = 0;
-            animator.SetTrigger("jump");
+            JumpFX();
 
             //force flip
             if (transform.localScale.x != wallJumpDirection)
@@ -114,6 +117,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
+    private void JumpFX()
+    {
+        animator.SetTrigger("jump");
+        smokeFX.Play();
+    }
+
     private void GroundCheck()
     {
         if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer)) //checks if set box overlaps with ground
@@ -188,6 +197,12 @@ public class PlayerMovement : MonoBehaviour
             Vector3 ls = transform.localScale;
             ls.x *= -1f;
             transform.localScale = ls;
+
+            if(rb.linearVelocity.y == 0)
+            {
+                smokeFX.Play();
+            }
+            
         }
     }
 

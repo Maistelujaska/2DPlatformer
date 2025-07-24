@@ -631,16 +631,16 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728032776}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 0.2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -813,7 +813,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.6933962, b: 0.6933962, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1578,20 +1578,29 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: -2
-          outSlope: -2
+          inSlope: -0.3488371
+          outSlope: -0.3488371
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0
+          outWeight: 0.19999999
+        - serializedVersion: 3
+          time: 0.6043166
+          value: 0.6126812
+          inSlope: -0.97195494
+          outSlope: -0.97195494
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
           value: 0
-          inSlope: 0
-          outSlope: 0
+          inSlope: -2.5649772
+          outSlope: -2.5649772
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0
+          inWeight: 0.07555562
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -5654,6 +5663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 834629856}
   animator: {fileID: 834629863}
+  smokeFX: {fileID: 728032779}
   moveSpeed: 5
   jumpPower: 10
   maxJumps: 2
