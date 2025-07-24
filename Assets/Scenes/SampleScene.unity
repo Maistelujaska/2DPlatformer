@@ -495,6 +495,7 @@ GameObject:
   - component: {fileID: 834629856}
   - component: {fileID: 834629861}
   - component: {fileID: 834629862}
+  - component: {fileID: 834629863}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -799,9 +800,34 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
+  wallSlideSpeed: 2
+  isWallSliding: 0
+  wallJumpPower: {x: 5, y: 10}
   baseGravity: 2
   maxFallSpeed: 18
   fallGravityMult: 2
+--- !u!95 &834629863
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834629853}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a4aa5af21fc19544cbe0a0d73f979c80, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &952156818
 GameObject:
   m_ObjectHideFlags: 0
